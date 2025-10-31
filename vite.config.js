@@ -6,10 +6,21 @@ export default defineConfig({
   server: {
     host: "0.0.0.0",
     port: process.env.PORT || 4173,
+    proxy: {
+      // 🔸 otomatis arahkan permintaan /api ke backend
+      "/api": {
+        target: "https://aisg-pro-79ru.onrender.com",
+        changeOrigin: true,
+        secure: false,
+      },
+    },
   },
   preview: {
     host: "0.0.0.0",
     port: process.env.PORT || 4173,
-    allowedHosts: ["aisg-pro-79ru.onrender.com", "aisg-control-center.onrender.com"],
+    allowedHosts: [
+      "aisg-pro-79ru.onrender.com",
+      "aisg-control-center.onrender.com",
+    ],
   },
 });
